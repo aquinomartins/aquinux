@@ -1,9 +1,15 @@
 <?php declare(strict_types=1); ?>
 <?php
-$currentPath = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?: '/';
-$isHome = $currentPath === '/';
-$isTrending = rtrim($currentPath, '/') === '/trending';
-$isMercadosLmsr = in_array(rtrim($currentPath, '/'), ['/mercados_lmsr', '/mercados-lmsr'], true);
+$rawRequestUri = (string) ($_SERVER['REQUEST_URI'] ?? '/');
+$currentPath = (string) (parse_url($rawRequestUri, PHP_URL_PATH) ?: '/');
+$normalizedPath = '/' . trim($currentPath, '/');
+if ($normalizedPath === '//') {
+    $normalizedPath = '/';
+}
+
+$isHome = $normalizedPath === '/';
+$isTrending = $normalizedPath === '/trending';
+$isMercadosLmsr = in_array($normalizedPath, ['/mercados_lmsr', '/mercados-lmsr'], true);
 ?>
 <header class="menu site-header" id="appMenu">
     <div class="menu-top">
@@ -16,7 +22,7 @@ $isMercadosLmsr = in_array(rtrim($currentPath, '/'), ['/mercados_lmsr', '/mercad
 </a>
         <!--span class="menu-tagline">Hub de leilões e ativos digitais</span-->
       </div>
-        
+
         <div class="menu-brand"><button class="auth-trigger" id="authOverlayButton" type="button">Entrar</button></div>
         <div id="authBoxAnchor">
           <div id="authBox" class="card">
