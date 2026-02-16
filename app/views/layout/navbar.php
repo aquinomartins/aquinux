@@ -4,10 +4,10 @@
 
       <div class="menu-actions">
         <div class="menu-brand">
-        <div class="menu-logo" data-view="home" href="#">
+        <a class="menu-logo" data-view="home" href="/">
   <!--img src="uploads/logoErgasterio.svg" alt="Logo Ergastério São Lucas"-->
   <span>Ergastério São Lucas</span>
-</div>
+</a>
         <!--span class="menu-tagline">Hub de leilões e ativos digitais</span-->
       </div>
         
@@ -59,7 +59,7 @@
           <li><a href="#" data-view="user_assets">Meus Ativos</a></li>
           <li><a href="#" data-view="pending_transactions">Transações pendentes</a></li>
           <li><a href="#" data-view="liquidity_game">Simulador</a></li>
-          <li><a href="/mercados-lmsr">Mercados LMSR</a></li>
+          <li><a href="/mercados_lmsr/">Mercados LMSR</a></li>
           <li><a href="materiais/">Materiais</a></li>
           <li class="admin-only"><a href="#" data-view="admin">Painel Administrativo</a></li>
           <li class="admin-only"><a href="#" data-view="admin_mint">Mint de NFT</a></li>

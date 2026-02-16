@@ -560,7 +560,7 @@ function setupEmbeddedPageStatus(){
 }
 
 function viewMercadosLMSR(){
-  window.location.assign('/mercados-lmsr');
+  window.location.assign('/mercados_lmsr/');
 }
 
 function viewMateriais(){
@@ -6594,6 +6594,7 @@ const ROUTE_TO_VIEW = {
   'pending-transactions': 'pending_transactions',
   simulator: 'liquidity_game',
   'mercados-lmsr': 'mercados_lmsr',
+  'mercados_lmsr': 'mercados_lmsr',
   materiais: 'materiais',
   admin: 'admin',
   'admin-mint': 'admin_mint',
