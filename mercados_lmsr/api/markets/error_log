@@ -1,0 +1,5 @@
+[15-Feb-2026 05:47:29 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function market_ensure_trade_idempotency_table() in /home/oftalmol/aquino.bsb.br/api/markets/buy.php:45
+Stack trace:
+#0 /home/oftalmol/aquino.bsb.br/mercados_lmsr/api/markets/buy.php(5): require()
+#1 {main}
+  thrown in /home/oftalmol/aquino.bsb.br/api/markets/buy.php on line 45
