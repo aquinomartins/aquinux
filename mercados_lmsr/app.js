@@ -63,6 +63,20 @@ const state = {
 
     let csrfToken = window.__csrfToken || null;
 
+    const syncAdminTabsVisibility = async () => {
+      try {
+        const sessionData = await fetchJson('./api/session.php');
+        const isAdmin = !!sessionData?.is_admin;
+        document.body.classList.toggle('is-admin', isAdmin);
+        csrfToken = sessionData?.csrf_token || csrfToken;
+        if (csrfToken) {
+          window.__csrfToken = csrfToken;
+        }
+      } catch (error) {
+        document.body.classList.remove('is-admin');
+      }
+    };
+
     const getCsrfToken = async () => {
       if (window.__csrfToken) {
         csrfToken = window.__csrfToken;
@@ -673,6 +687,7 @@ Confirma a resolução?`));
       }
     });
 
+    syncAdminTabsVisibility();
     loadMarkets();
     if (document.visibilityState === 'visible') {
       startPolling();
