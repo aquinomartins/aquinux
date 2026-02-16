@@ -10,6 +10,29 @@ if ($normalizedPath === '//') {
 $isHome = $normalizedPath === '/';
 $isTrending = $normalizedPath === '/trending';
 $isMercadosLmsr = in_array($normalizedPath, ['/mercados_lmsr', '/mercados-lmsr'], true);
+$isMercadoPreditivo = str_starts_with($normalizedPath, '/mercadopreditivo/');
+
+$linkOverrides = isset($navbarLinkOverrides) && is_array($navbarLinkOverrides)
+    ? $navbarLinkOverrides
+    : [];
+
+$resolveNavHref = static function (string $view, string $defaultHref = '#') use ($linkOverrides): string {
+    $override = $linkOverrides[$view] ?? null;
+    return is_string($override) && $override !== '' ? $override : $defaultHref;
+};
+
+$useServerAuthLinks = !empty($navbarUseServerAuthLinks);
+
+$sessionUserName = isset($_SESSION['name']) && is_string($_SESSION['name'])
+    ? trim($_SESSION['name'])
+    : '';
+
+$sessionEmail = isset($_SESSION['email']) && is_string($_SESSION['email'])
+    ? trim($_SESSION['email'])
+    : '';
+
+$isLogged = !empty($_SESSION['uid']);
+$isAdmin = !empty($_SESSION['is_admin']);
 ?>
 <header class="menu site-header" id="appMenu">
     <div class="menu-top">
@@ -23,7 +46,20 @@ $isMercadosLmsr = in_array($normalizedPath, ['/mercados_lmsr', '/mercados-lmsr']
         <!--span class="menu-tagline">Hub de leilões e ativos digitais</span-->
       </div>
 
-        <div class="menu-brand"><button class="auth-trigger" id="authOverlayButton" type="button">Entrar</button></div>
+        <?php if ($useServerAuthLinks): ?>
+          <div class="menu-brand navbar-auth-inline">
+            <?php if ($isLogged): ?>
+              <span class="navbar-auth-inline__status">
+                Olá, <?= htmlspecialchars((string) ($sessionUserName !== '' ? $sessionUserName : $sessionEmail), ENT_QUOTES, 'UTF-8') ?><?= $isAdmin ? ' • Admin' : '' ?>
+              </span>
+              <a class="auth-trigger" href="/auth/logout.php">Sair</a>
+            <?php else: ?>
+              <a class="auth-trigger" href="/auth/login.php">Entrar</a>
+            <?php endif; ?>
+          </div>
+        <?php else: ?>
+          <div class="menu-brand"><button class="auth-trigger" id="authOverlayButton" type="button">Entrar</button></div>
+        <?php endif; ?>
         <div id="authBoxAnchor">
           <div id="authBox" class="card">
             <!-- Login -->
@@ -64,16 +100,16 @@ $isMercadosLmsr = in_array($normalizedPath, ['/mercados_lmsr', '/mercados-lmsr']
           <li><a href="/trending" data-view="trending"<?= $isTrending ? ' aria-current="page"' : '' ?>>Trending</a></li>
           <li><a href="#" data-view="mechanics">Mecânica Unificada</a></li>
           <li><a href="#" data-view="live_market">Mercado ao vivo</a></li>
-          <li><a href="#" data-view="mercado_preditivo">Mercado preditivo</a></li>
+          <li><a href="<?= htmlspecialchars($resolveNavHref('mercado_preditivo'), ENT_QUOTES, 'UTF-8') ?>" data-view="mercado_preditivo"<?= $isMercadoPreditivo ? ' aria-current="page"' : '' ?>>Mercado preditivo</a></li>
           <li><a href="#" data-view="collections">Coleções</a></li>
           <li><a href="#" data-view="auctions">Leilões</a></li>
           <li><a href="#" data-view="events">Eventos</a></li>
-          <li><a href="#" data-view="user_assets">Meus Ativos</a></li>
+          <li><a href="<?= htmlspecialchars($resolveNavHref('user_assets'), ENT_QUOTES, 'UTF-8') ?>" data-view="user_assets">Meus Ativos</a></li>
           <li><a href="#" data-view="pending_transactions">Transações pendentes</a></li>
           <li><a href="#" data-view="liquidity_game">Simulador</a></li>
           <li><a href="/mercados_lmsr/" data-view="mercados_lmsr"<?= $isMercadosLmsr ? ' aria-current="page"' : '' ?>>Mercados LMSR</a></li>
           <li><a href="/materiais/">Materiais</a></li>
-          <li class="admin-only"><a href="#" data-view="admin">Painel Administrativo</a></li>
+          <li class="admin-only"><a href="<?= htmlspecialchars($resolveNavHref('admin'), ENT_QUOTES, 'UTF-8') ?>" data-view="admin">Painel Administrativo</a></li>
           <li class="admin-only"><a href="#" data-view="admin_mint">Mint de NFT</a></li>
         </ul>
       </nav>

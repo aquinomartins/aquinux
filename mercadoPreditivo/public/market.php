@@ -4,33 +4,22 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/../../lib/auth.php';
+require_once __DIR__ . '/../includes/navbar_context.php';
 
 $slug = isset($_GET['slug']) ? trim((string)$_GET['slug']) : '';
 $userId = current_user_id();
-$userName = $_SESSION['name'] ?? null;
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <title>Mercado Preditivo</title>
+    <link rel="stylesheet" href="/styles.css">
     <link rel="stylesheet" href="/mercadoPreditivo/assets/styles.css">
 </head>
-<body>
-<div class="container" data-market-detail data-market-slug="<?= htmlspecialchars($slug) ?>">
-    <header class="header">
-        <h1>Mercado de Previsões</h1>
-        <nav>
-            <a href="/mercadoPreditivo/public/index.php">Mercados</a>
-            <?php if ($userId): ?>
-                <span>Olá, <?= htmlspecialchars((string)$userName) ?></span>
-                <a href="/mercadoPreditivo/public/me.php">Minhas posições</a>
-                <a href="/auth/logout.php">Sair</a>
-            <?php else: ?>
-                <a href="/auth/login.php">Entrar</a>
-            <?php endif; ?>
-        </nav>
-    </header>
+<body class="prediction-market-page">
+<?php require __DIR__ . '/../../app/views/layout/navbar.php'; ?>
+<main class="container prediction-container" data-market-detail data-market-slug="<?= htmlspecialchars($slug) ?>">
 
     <section class="card">
         <h2 data-market-title>Carregando...</h2>
@@ -85,7 +74,7 @@ $userName = $_SESSION['name'] ?? null;
             <p>Você precisa estar logado para operar.</p>
         <?php endif; ?>
     </section>
-</div>
+</main>
 <script src="/mercadoPreditivo/assets/prediction.js" defer></script>
 </body>
 </html>
