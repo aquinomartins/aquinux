@@ -10,5 +10,6 @@ return [
         '/trending' => [new TrendingController(), 'index'],
         '/api/trending' => [new TrendingController(), 'data'],
         '/mercados-lmsr' => [new MercadosLmsrController(), 'index'],
+        '/mercados_lmsr' => [new MercadosLmsrController(), 'index'],
     ],
 ];
