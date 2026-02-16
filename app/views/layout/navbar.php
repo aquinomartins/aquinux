@@ -10,15 +10,7 @@ if ($normalizedPath === '//') {
 $isHome = $normalizedPath === '/';
 $isTrending = $normalizedPath === '/trending';
 $isMercadosLmsr = in_array($normalizedPath, ['/mercados_lmsr', '/mercados-lmsr'], true);
-$pathStartsWith = static function (string $haystack, string $needle): bool {
-    if (function_exists('str_starts_with')) {
-        return str_starts_with($haystack, $needle);
-    }
-
-    return $needle === '' || strncmp($haystack, $needle, strlen($needle)) === 0;
-};
-
-$isMercadoPreditivo = $pathStartsWith($normalizedPath, '/mercadopreditivo/');
+$isMercadoPreditivo = str_starts_with($normalizedPath, '/mercadopreditivo/');
 
 $linkOverrides = isset($navbarLinkOverrides) && is_array($navbarLinkOverrides)
     ? $navbarLinkOverrides
