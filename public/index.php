@@ -6,10 +6,30 @@ $root = dirname(__DIR__);
 $uriPath = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?: '/';
 $method = strtoupper($_SERVER['REQUEST_METHOD'] ?? 'GET');
 
-if (PHP_SAPI === 'cli-server') {
-    $requestedFile = $root . $uriPath;
-    if (is_file($requestedFile)) {
-        return false;
+if ($method === 'GET' || $method === 'HEAD') {
+    $requestedPath = $root . '/' . ltrim($uriPath, '/');
+    $resolvedPath = realpath($requestedPath);
+
+    if ($resolvedPath !== false && str_starts_with($resolvedPath, $root . DIRECTORY_SEPARATOR) && is_file($resolvedPath)) {
+        $extension = strtolower(pathinfo($resolvedPath, PATHINFO_EXTENSION));
+        $allowedExtensions = [
+            'css', 'js', 'mjs', 'json', 'map', 'txt', 'xml',
+            'png', 'jpg', 'jpeg', 'gif', 'svg', 'webp', 'ico',
+            'woff', 'woff2', 'ttf', 'otf', 'eot',
+            'mp4', 'webm', 'mp3', 'wav', 'pdf',
+        ];
+
+        if (in_array($extension, $allowedExtensions, true)) {
+            $mimeType = mime_content_type($resolvedPath) ?: 'application/octet-stream';
+            header('Content-Type: ' . $mimeType);
+            header('Content-Length: ' . (string) filesize($resolvedPath));
+
+            if ($method === 'GET') {
+                readfile($resolvedPath);
+            }
+
+            exit;
+        }
     }
 }
 
