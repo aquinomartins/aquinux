@@ -11,6 +11,7 @@ final class HomeController
         render_page('home', [
             'pageTitle' => 'Ergastério São Lucas',
             'pageDescription' => 'Painel principal do Ergastério com módulos interativos.',
+            'pageBodyClass' => 'home-wireframe',
         ]);
     }
 }

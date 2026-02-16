@@ -2,12 +2,6 @@
 
 declare(strict_types=1);
 ?>
-<section class="server-card page-hero">
-  <p class="subtle">Home</p>
-  <h1>Ergastério São Lucas</h1>
-  <p class="subtle">Painel inicial com módulos de leilões, mercado, coleções e simulação.</p>
-</section>
-
 <main id="view" class="landing-view" data-default-view="home"></main>
 
 <section class="auth-overlay" data-role="auth-overlay" hidden>

@@ -21,4 +21,4 @@
     .subtle{color:#94a3b8}
   </style>
 </head>
-<body class="server-layout">
+<body class="server-layout<?= !empty($pageBodyClass) ? ' ' . htmlspecialchars((string) $pageBodyClass, ENT_QUOTES, 'UTF-8') : '' ?>">
