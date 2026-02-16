@@ -8,12 +8,6 @@
   <meta name="description" content="<?= htmlspecialchars($pageDescription, ENT_QUOTES, 'UTF-8') ?>" />
   <link rel="stylesheet" href="<?= base_url('styles.css') ?>" />
   <link rel="stylesheet" href="<?= base_url('responsive-layout.css') ?>" />
-  <link rel="stylesheet" href="<?= base_url('cmss/estilos/www.css') ?>" />
-  <link rel="stylesheet" href="<?= base_url('cmss/estilos/www2.css') ?>" />
-  <link rel="stylesheet" href="<?= base_url('cmss/estilos/fgx0.css') ?>" />
-  <link rel="stylesheet" href="<?= base_url('cmss/estilos/mxk5.css') ?>" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-  <link rel="stylesheet" href="<?= base_url('cmss/estilos/sec-3-6.css') ?>" />
   <style>
     body.server-layout{background:#0f172a;color:#e2e8f0;min-height:100vh;margin:0}
     .container{max-width:1200px;margin:0 auto;padding:1rem}
@@ -27,19 +21,5 @@
     .page-hero h1{margin:.4rem 0}
     .subtle{color:#94a3b8}
   </style>
-  <script src="<?= base_url('cmss/scripts2/background-image-lazy-load.js') ?>"></script>
-  <script src="<?= base_url('cmss/scripts2/cm-app.min.js') ?>"></script>
-  <script src="<?= base_url('cmss/scripts2/d51y.js') ?>"></script>
-  <script src="<?= base_url('cmss/scripts2/g24t.js') ?>"></script>
-  <script src="<?= base_url('cmss/scripts2/interactions.js') ?>"></script>
-  <script src="<?= base_url('cmss/scripts2/picture-fill-background.js') ?>"></script>
-  <script src="<?= base_url('cmss/scripts2/sec-cpt-3-6.js') ?>"></script>
-  <script src="<?= base_url('cmss/scripts2/slick-sliders.js') ?>"></script>
-  <script src="<?= base_url('cmss/scripts2/tables.js') ?>"></script>
-  <script src="<?= base_url('cmss/scripts2/tactic.js') ?>"></script>
-  <script src="<?= base_url('cmss/scripts2/tacticbindlinks.js') ?>"></script>
-  <script src="<?= base_url('cmss/scripts2/widgets.js') ?>"></script>
-  <script src="<?= base_url('cmss/scripts/www.js') ?>"></script>
-  <script src="<?= base_url('cmss/scripts/www_original.js') ?>"></script>
 </head>
 <body class="server-layout<?= !empty($pageBodyClass) ? ' ' . htmlspecialchars((string) $pageBodyClass, ENT_QUOTES, 'UTF-8') : '' ?>">
