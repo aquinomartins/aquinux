@@ -1,4 +1,10 @@
 <?php declare(strict_types=1); ?>
+<?php
+$currentPath = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?: '/';
+$isHome = $currentPath === '/';
+$isTrending = rtrim($currentPath, '/') === '/trending';
+$isMercadosLmsr = in_array(rtrim($currentPath, '/'), ['/mercados_lmsr', '/mercados-lmsr'], true);
+?>
 <header class="menu site-header" id="appMenu">
     <div class="menu-top">
 
@@ -48,8 +54,8 @@
     <div class="menu-content2" id="menuContent">
       <nav class="menu-nav" aria-label="Navegação principal">
         <ul>
-          <li><a href="/" aria-current="page">Home</a></li>
-          <li><a href="/trending">Trending</a></li>
+          <li><a href="/" data-view="home"<?= $isHome ? ' aria-current="page"' : '' ?>>Home</a></li>
+          <li><a href="/trending" data-view="trending"<?= $isTrending ? ' aria-current="page"' : '' ?>>Trending</a></li>
           <li><a href="#" data-view="mechanics">Mecânica Unificada</a></li>
           <li><a href="#" data-view="live_market">Mercado ao vivo</a></li>
           <li><a href="#" data-view="mercado_preditivo">Mercado preditivo</a></li>
@@ -59,14 +65,11 @@
           <li><a href="#" data-view="user_assets">Meus Ativos</a></li>
           <li><a href="#" data-view="pending_transactions">Transações pendentes</a></li>
           <li><a href="#" data-view="liquidity_game">Simulador</a></li>
-          <li><a href="/mercados_lmsr/">Mercados LMSR</a></li>
-          <li><a href="materiais/">Materiais</a></li>
+          <li><a href="/mercados_lmsr/" data-view="mercados_lmsr"<?= $isMercadosLmsr ? ' aria-current="page"' : '' ?>>Mercados LMSR</a></li>
+          <li><a href="/materiais/">Materiais</a></li>
           <li class="admin-only"><a href="#" data-view="admin">Painel Administrativo</a></li>
           <li class="admin-only"><a href="#" data-view="admin_mint">Mint de NFT</a></li>
         </ul>
       </nav>
     </div>
   </header>
-  
-
-
