@@ -5,6 +5,21 @@ declare(strict_types=1);
 require_once __DIR__ . '/lmsr.php';
 require_once __DIR__ . '/market_accounts.php';
 
+function market_ensure_trade_idempotency_table(PDO $pdo): void {
+  $pdo->exec(
+    "CREATE TABLE IF NOT EXISTS market_trade_idempotency (
+      id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+      user_id INT NOT NULL,
+      market_id INT NOT NULL,
+      idempotency_key VARCHAR(128) NOT NULL,
+      trade_id BIGINT UNSIGNED NOT NULL,
+      created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+      UNIQUE KEY uniq_market_trade_idempotency (user_id, market_id, idempotency_key),
+      KEY idx_market_trade_idempotency_trade (trade_id)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci"
+  );
+}
+
 function market_fetch(PDO $pdo, int $marketId, bool $forUpdate = false): ?array {
   $lock = $forUpdate ? ' FOR UPDATE' : '';
   $stmt = $pdo->prepare("SELECT m.*, COALESCE(s.q_sim, 0) AS q_sim, COALESCE(s.q_nao, 0) AS q_nao, COALESCE(s.cost_total, 0) AS cost_total, s.updated_at AS state_updated_at FROM markets m LEFT JOIN market_state s ON s.market_id = m.id WHERE m.id = ?{$lock}");
