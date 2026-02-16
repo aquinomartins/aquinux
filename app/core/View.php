@@ -23,6 +23,7 @@ function render_page(string $contentView, array $data = []): void
     extract($data, EXTR_SKIP);
     $pageTitle = $data['pageTitle'] ?? 'Ergastério';
     $pageDescription = $data['pageDescription'] ?? 'Plataforma Ergastério';
+    $pageBodyClass = $data['pageBodyClass'] ?? '';
 
     require $viewsPath . '/layout/header.php';
     require $viewsPath . '/layout/navbar.php';
