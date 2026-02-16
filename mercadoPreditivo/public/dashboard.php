@@ -5,6 +5,7 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../includes/db.php';
 require_once __DIR__ . '/../includes/functions.php';
+require_once __DIR__ . '/../includes/navbar_context.php';
 
 require_login();
 
@@ -23,17 +24,12 @@ $mp_positions = $stmt->fetchAll();
 <head>
     <meta charset="UTF-8">
     <title>Dashboard - Mercado Preditivo</title>
-    <link rel="stylesheet" href="/assets/styles.css">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/mercadoPreditivo/assets/styles.css">
 </head>
-<body>
-<div class="container">
-    <header class="header">
-        <h1>Dashboard</h1>
-        <nav>
-            <a href="/public/index.php">Mercados</a>
-            <a href="/public/logout.php">Sair</a>
-        </nav>
-    </header>
+<body class="prediction-market-page">
+<?php require __DIR__ . '/../../app/views/layout/navbar.php'; ?>
+<main class="container prediction-container">
 
     <section class="card">
         <h2>Saldo atual</h2>
@@ -99,6 +95,6 @@ $mp_positions = $stmt->fetchAll();
             <p>Sem transações registradas.</p>
         <?php endif; ?>
     </section>
-</div>
+</main>
 </body>
 </html>
