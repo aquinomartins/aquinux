@@ -6,19 +6,11 @@ $root = dirname(__DIR__);
 $uriPath = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?: '/';
 $method = strtoupper($_SERVER['REQUEST_METHOD'] ?? 'GET');
 
-$pathStartsWith = static function (string $haystack, string $needle): bool {
-    if (function_exists('str_starts_with')) {
-        return str_starts_with($haystack, $needle);
-    }
-
-    return $needle === '' || strncmp($haystack, $needle, strlen($needle)) === 0;
-};
-
 if ($method === 'GET' || $method === 'HEAD') {
     $requestedPath = $root . '/' . ltrim($uriPath, '/');
     $resolvedPath = realpath($requestedPath);
 
-    if ($resolvedPath !== false && $pathStartsWith($resolvedPath, $root . DIRECTORY_SEPARATOR) && is_file($resolvedPath)) {
+    if ($resolvedPath !== false && str_starts_with($resolvedPath, $root . DIRECTORY_SEPARATOR) && is_file($resolvedPath)) {
         $extension = strtolower(pathinfo($resolvedPath, PATHINFO_EXTENSION));
         $allowedExtensions = [
             'css', 'js', 'mjs', 'json', 'map', 'txt', 'xml',
