@@ -7,6 +7,7 @@
   <title><?= htmlspecialchars($pageTitle, ENT_QUOTES, 'UTF-8') ?></title>
   <meta name="description" content="<?= htmlspecialchars($pageDescription, ENT_QUOTES, 'UTF-8') ?>" />
   <link rel="stylesheet" href="<?= base_url('styles.css') ?>" />
+  <link rel="stylesheet" href="<?= base_url('responsive-layout.css') ?>" />
   <style>
     body.server-layout{background:#0f172a;color:#e2e8f0;min-height:100vh;margin:0}
     .container{max-width:1200px;margin:0 auto;padding:1rem}
