@@ -790,6 +790,12 @@ small.hint { color:#6b7280; }
 .landing-menu-showcase__header h2 { margin:6px 0; font-size:1.6rem; color:#fff; }
 .landing-menu-showcase__header span { color:#cbd5f5; }
 .menu-showcase__grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap:14px; }
+.menu-showcase__grid--masonry{display:block;column-count:4;column-gap:14px;}
+.menu-showcase__grid--masonry .menu-showcase__item{display:inline-block;width:100%;margin:0 0 14px;break-inside:avoid;page-break-inside:avoid;}
+.menu-showcase__grid--masonry .menu-showcase__item:nth-child(4n + 1){margin-top:0;}
+.menu-showcase__grid--masonry .menu-showcase__item:nth-child(4n + 2){margin-top:16px;}
+.menu-showcase__grid--masonry .menu-showcase__item:nth-child(4n + 3){margin-top:32px;}
+.menu-showcase__grid--masonry .menu-showcase__item:nth-child(4n){margin-top:10px;}
 
 /* ====== Home cards no formato PM ====== */
 .pm-card{
@@ -915,6 +921,17 @@ small.hint { color:#6b7280; }
 .mechanics-action-card li { display:flex; gap:8px; align-items:flex-start; }
 .mechanics-action-card li::before { content:"•"; color:#38bdf8; font-weight:700; }
 @keyframes float { 0% { transform:translate3d(0,0,0); } 50% { transform:translate3d(-20px,10px,0) scale(1.05); } 100% { transform:translate3d(0,0,0); } }
+@media (max-width:1400px){
+  .menu-showcase__grid--masonry{column-count:3;}
+}
+@media (max-width:1024px){
+  .menu-showcase__grid--masonry{column-count:2;}
+}
+@media (max-width:680px){
+  .menu-showcase__grid--masonry{column-count:1;}
+  .menu-showcase__grid--masonry .menu-showcase__item{margin-top:0 !important;}
+}
+
 @media (max-width:960px) {
   .landing-hero { padding:32px; }
   .hero-actions { flex-direction:column; align-items:flex-start; }
