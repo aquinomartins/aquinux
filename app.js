@@ -339,6 +339,7 @@ const MENU_SHOWCASE_VISUALS = {
 function renderMenuShowcase(items = MENU_SHOWCASE_ITEMS){
   const visibleItems = items.filter(item => !(item.adminOnly && !currentSession.is_admin));
   const cardStyles = getMenuCardStyleConfig();
+  const masonryPattern = ['compact', 'regular', 'tall', 'regular'];
   const cards = visibleItems.map((item, index)=>{
     const isFeatured = item.featured;
     const visuals = MENU_SHOWCASE_VISUALS[item.view] || { icon: '◉', accent: '#3b82f6' };
@@ -348,8 +349,9 @@ function renderMenuShowcase(items = MENU_SHOWCASE_ITEMS){
     const status = isFeatured ? 'Destaque' : 'Ativo';
     const badge = isFeatured ? '<span class="menu-showcase__badge" aria-label="Acesso rápido ao módulo de leilões">Destaque</span>' : '';
     const order = String(index + 1).padStart(2, '0');
+    const cardDensity = isFeatured ? 'tall' : masonryPattern[index % masonryPattern.length];
     return `
-      <article class="menu-showcase__item pm-card ${styleClass}${isFeatured ? ' is-featured' : ''}" style="--accent:${esc(visuals.accent)};--p:${percent};">
+      <article class="menu-showcase__item menu-showcase__item--${cardDensity} pm-card ${styleClass}${isFeatured ? ' is-featured' : ''}" style="--accent:${esc(visuals.accent)};--p:${percent};">
         <div class="pm-top">
           <div class="pm-left">
             <div class="pm-icon" aria-hidden="true">${esc(visuals.icon)}</div>
