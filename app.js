@@ -401,7 +401,7 @@ function renderMenuShowcase(items = MENU_SHOWCASE_ITEMS){
         <h2>Todos os módulos em um só lugar</h2>
         <span>Atalhos rápidos para navegar logo após o login. Leilões está em destaque para você retomar as disputas com um clique.</span>
       </div-->
-      <div class="menu-showcase__grid">
+      <div class="menu-showcase__grid menu-showcase__grid--masonry">
         ${cards}
       </div>
     </section>
