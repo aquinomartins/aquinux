@@ -50,7 +50,7 @@ $markets = array_map(function($market) use ($pdo) {
 <head>
     <meta charset="UTF-8">
     <title>Admin - Mercados</title>
-    <link rel="stylesheet" href="/mercadoPreditivo/assets/styles.css">
+    <link rel="stylesheet" href="/ergasterio-unificado.css">
 </head>
 <body>
 <div class="container">

@@ -12,8 +12,7 @@ require_once __DIR__ . '/../includes/navbar_context.php';
 <head>
     <meta charset="UTF-8">
     <title>Mercado Preditivo</title>
-    <link rel="stylesheet" href="/styles.css">
-    <link rel="stylesheet" href="/mercadoPreditivo/assets/styles.css">
+    <link rel="stylesheet" href="/ergasterio-unificado.css">
 </head>
 <body class="prediction-market-page">
 <?php require __DIR__ . '/../../app/views/layout/navbar.php'; ?>

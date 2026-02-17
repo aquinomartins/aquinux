@@ -4,8 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ergastério • Mercados LMSR</title>
-  <link rel="stylesheet" href="/styles.css" />
-  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="/ergasterio-unificado.css" />
 </head>
 <body>
 <?php require __DIR__ . '/../app/views/layout/navbar.php'; ?>
