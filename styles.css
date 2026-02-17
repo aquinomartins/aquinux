@@ -1937,7 +1937,7 @@ body.home-wireframe .auth-trigger{
 body.home-wireframe .menu-nav ul{gap:10px;flex-wrap:nowrap;overflow-x:auto;padding-bottom:2px;}
 body.home-wireframe .menu a:not(.menu-title__link){
   color:#62748a;
-  font-size:2rem;
+  font-size:clamp(1rem,1.9vw,1.25rem);
   border-radius:0;
   border-bottom:3px solid transparent;
   padding:10px 6px 12px;
@@ -1959,24 +1959,24 @@ body.home-wireframe .pm-card{
 }
 body.home-wireframe .pm-left{gap:10px;}
 body.home-wireframe .pm-icon{width:44px;height:44px;border-radius:12px;}
-body.home-wireframe .pm-name{font-size:1.8rem;}
+body.home-wireframe .pm-name{font-size:clamp(1.05rem,2.2vw,1.45rem);}
 body.home-wireframe .pm-gauge{--size:62px;--thick:8px;}
 body.home-wireframe .pm-gauge-val{display:none;}
 body.home-wireframe .pm-gauge-meta{margin-top:10px;}
-body.home-wireframe .pm-gauge-dir{font-size:1.55rem;}
-body.home-wireframe .pm-gauge-delta{font-size:1.4rem;}
+body.home-wireframe .pm-gauge-dir{font-size:1rem;}
+body.home-wireframe .pm-gauge-delta{font-size:0.95rem;}
 body.home-wireframe .pm-actions{gap:10px;margin:14px 0 10px;}
 body.home-wireframe .pm-btn{
   border-radius:14px;
   padding:12px 14px;
   border:1px solid rgba(15,23,42,0.08);
 }
-body.home-wireframe .pm-btn-label{font-size:2rem;font-weight:700;}
-body.home-wireframe .pm-btn-pay{font-size:1.65rem;font-weight:600;}
+body.home-wireframe .pm-btn-label{font-size:1.5rem;font-weight:700;}
+body.home-wireframe .pm-btn-pay{font-size:1.1rem;font-weight:600;}
 body.home-wireframe .pm-foot{margin-top:0;}
 body.home-wireframe .pm-live{gap:10px;}
-body.home-wireframe .pm-live-text{font-size:2.1rem;font-weight:800;}
-body.home-wireframe .pm-vol{font-size:1.75rem;color:#6b7280;}
+body.home-wireframe .pm-live-text{font-size:1.5rem;font-weight:800;}
+body.home-wireframe .pm-vol{font-size:1.15rem;color:#6b7280;}
 body.home-wireframe .pm-dot{width:11px;height:11px;box-shadow:0 0 0 3px rgba(239,68,68,0.2);}
 body.home-wireframe footer.container{display:none;}
 
