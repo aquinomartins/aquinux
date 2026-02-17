@@ -85,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Criar Mercado</title>
-    <link rel="stylesheet" href="/ergasterio-unificado.css">
+    <link rel="stylesheet" href="/mercadoPreditivo/assets/styles.css">
 </head>
 <body>
 <div class="container">
